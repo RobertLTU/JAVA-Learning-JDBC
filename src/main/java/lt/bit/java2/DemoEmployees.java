@@ -21,7 +21,13 @@ public class DemoEmployees {
      */
     public static void main(String[] args) {
         List <Employee> employeeList = EmployeeService.loadEmployees(2,100);
-        System.out.println("Size of employee list is = " + employeeList.size());
+        System.out.println("Salary records count : " + employeeList.get(10).getSalaries().size());
+        System.out.println(employeeList.get(10).getEmpNo());
+        System.out.println(employeeList.get(10).getFirstName());
+        System.out.println(employeeList.get(10).getLastName());
+        System.out.println(employeeList.get(10).getBirthDate());
+        System.out.println(employeeList.get(10).getHireDate());
+        }
 //        List<Employee> testList = EmployeeService.loadEmployees(2,100);
 
 //        Properties properties = new Properties();
@@ -89,8 +95,6 @@ public class DemoEmployees {
 //        long time = System.currentTimeMillis() - start;
 //        System.out.println("Viso: " + count + " per " + time + "ms");
 
-
-    }
 
 
 

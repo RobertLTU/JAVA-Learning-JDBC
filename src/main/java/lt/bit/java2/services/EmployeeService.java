@@ -39,11 +39,11 @@ public class EmployeeService {
             preparedStatement.setInt(2, pageSize);
             resultSet = preparedStatement.executeQuery();
 
-            resultSet.next();     // DEBUG line
-            int emp_no = resultSet.getInt("emp_no");      // DEBUG line
-            String debugString = resultSet.getString("first_name");   // DEBUG line
-            int debugSalary = resultSet.getInt("salary");   // DEBUG line
-            String degubString = resultSet.getString("gender"); // DEBUG line
+//            resultSet.next();     // DEBUG line
+//            int emp_no = resultSet.getInt("emp_no");      // DEBUG line
+//            String debugString = resultSet.getString("first_name");   // DEBUG line
+//            int debugSalary = resultSet.getInt("salary");   // DEBUG line
+//            String degubString = resultSet.getString("gender"); // DEBUG line
 
 // 101 Query eilute   '10009', '1952-04-19', 'Sumant', 'Peac', 'F', '1985-02-18', '85875', '1997-02-15', '1998-02-15'
 // 201 Query eilute   '10021', '1960-02-20', 'Ramzi', 'Erde', 'M', '1988-02-10', '61117', '1992-02-09', '1993-02-08'
@@ -62,11 +62,11 @@ public class EmployeeService {
                 currEmpNo = resultSet.getInt("emp_no");
 
                 if(currEmpNo != prevEmpNo){
-                    currentEmployee = EmployeeMap.fromResultSet(resultSet);
-                    currSalary = SalaryMap.fromResultSet(resultSet);
-                    currSalary.setEmployee(currentEmployee);
-                    currentEmployee.getSalaries().add(currSalary);
-                    employeeList.add(currentEmployee);
+                    currentEmployee = EmployeeMap.fromResultSet(resultSet); // sukuriamas Employee objektas
+                    currSalary = SalaryMap.fromResultSet(resultSet); //Sukuriamas Salary objektas
+                    currSalary.setEmployee(currentEmployee); // Prie salary pridedamas Employee objektas
+                    currentEmployee.getSalaries().add(currSalary); // I employee SalaryLista pridedamas salary
+                    employeeList.add(currentEmployee); // Employee pridedamas i EmployeeList
 
                 } else {
                     currSalary = SalaryMap.fromResultSet(resultSet);
@@ -79,6 +79,8 @@ public class EmployeeService {
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
+//            z.printStackTrace();
+//            System.out.println(z.getMessage());
         }
 
         return employeeList;

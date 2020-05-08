@@ -1,6 +1,7 @@
 package lt.bit.java2.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
@@ -13,7 +14,7 @@ public class Employee {
     private LocalDate hireDate;
 
     // employee --< salary
-    private List<Salary> salaries;
+    private List<Salary> salaries = new ArrayList<>();
 
 
 
