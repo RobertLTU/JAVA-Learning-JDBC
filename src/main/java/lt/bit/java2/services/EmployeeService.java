@@ -45,8 +45,8 @@ public class EmployeeService {
             int debugSalary = resultSet.getInt("salary");   // DEBUG line
             String degubString = resultSet.getString("gender"); // DEBUG line
 
-//  101 eilute DB  '10009', '1952-04-19', 'Sumant', 'Peac', 'F', '1985-02-18', '85875', '1997-02-15', '1998-02-15'
-
+// 101 Query eilute   '10009', '1952-04-19', 'Sumant', 'Peac', 'F', '1985-02-18', '85875', '1997-02-15', '1998-02-15'
+// 201 Query eilute   '10021', '1960-02-20', 'Ramzi', 'Erde', 'M', '1988-02-10', '61117', '1992-02-09', '1993-02-08'
 //          =========================================================
 
 
