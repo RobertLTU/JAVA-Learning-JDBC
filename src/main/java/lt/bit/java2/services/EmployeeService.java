@@ -35,7 +35,7 @@ public class EmployeeService {
             int prevEmpNo = 0;
             int currEmpNo = 0;
 
-            preparedStatement.setInt(1, pageSize * (pageNo-1));
+            preparedStatement.setInt(1, pageSize * (pageNo - 1));
             preparedStatement.setInt(2, pageSize);
             resultSet = preparedStatement.executeQuery();
 
@@ -62,11 +62,12 @@ public class EmployeeService {
                 currEmpNo = resultSet.getInt("emp_no");
 
                 if(currEmpNo != prevEmpNo){
-                    currentEmployee = EmployeeMap.fromResultSet(resultSet); // sukuriamas Employee objektas
-                    currSalary = SalaryMap.fromResultSet(resultSet); //Sukuriamas Salary objektas
-                    currSalary.setEmployee(currentEmployee); // Prie salary pridedamas Employee objektas
-                    currentEmployee.getSalaries().add(currSalary); // I employee SalaryLista pridedamas salary
-                    employeeList.add(currentEmployee); // Employee pridedamas i EmployeeList
+                    currentEmployee = EmployeeMap.fromResultSet(resultSet);
+                    currSalary = SalaryMap.fromResultSet(resultSet);
+                    currSalary.setEmployee(currentEmployee);
+                    currentEmployee.getSalaries().add(currSalary);
+                    employeeList.add(currentEmployee);
+                    prevEmpNo = currentEmployee.getEmpNo();
 
                 } else {
                     currSalary = SalaryMap.fromResultSet(resultSet);

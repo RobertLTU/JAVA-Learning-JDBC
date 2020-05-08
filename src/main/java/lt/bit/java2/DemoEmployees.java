@@ -2,6 +2,7 @@ package lt.bit.java2;
 
 import com.google.gson.Gson;
 import lt.bit.java2.model.Employee;
+import lt.bit.java2.model.Salary;
 import lt.bit.java2.services.DBService;
 import lt.bit.java2.services.EmployeeMap;
 import lt.bit.java2.services.EmployeeService;
@@ -20,13 +21,20 @@ public class DemoEmployees {
         3. Ir kaip vykdymo rezultata gauname 'ResultSet'
      */
     public static void main(String[] args) {
-        List <Employee> employeeList = EmployeeService.loadEmployees(2,100);
-        System.out.println("Salary records count : " + employeeList.get(10).getSalaries().size());
-        System.out.println(employeeList.get(10).getEmpNo());
-        System.out.println(employeeList.get(10).getFirstName());
-        System.out.println(employeeList.get(10).getLastName());
-        System.out.println(employeeList.get(10).getBirthDate());
-        System.out.println(employeeList.get(10).getHireDate());
+        List <Employee> employeeList = EmployeeService.loadEmployees(1,100);
+        for(Employee employee : employeeList){
+            System.out.print("" + employee.getEmpNo() + " || ");
+            System.out.print("" + employee.getFirstName()+ " || ");
+            System.out.print("" + employee.getLastName() + " || ");
+            System.out.println("Salary records count : " + employee.getSalaries().size() + " || ");
+            for(Salary salary : employee.getSalaries()){
+                System.out.print("\t Salary :" + salary.getSalary());
+                System.out.println(" || hash code: " + employee.hashCode());
+            }
+
+
+        }
+
         }
 //        List<Employee> testList = EmployeeService.loadEmployees(2,100);
 
