@@ -21,15 +21,15 @@ public class DemoEmployees {
         3. Ir kaip vykdymo rezultata gauname 'ResultSet'
      */
     public static void main(String[] args) {
-        List <Employee> employeeList = EmployeeService.loadEmployees(1,100);
+        List <Employee> employeeList = EmployeeService.loadEmployees(0,100);
         for(Employee employee : employeeList){
             System.out.print("" + employee.getEmpNo() + " || ");
             System.out.print("" + employee.getFirstName()+ " || ");
             System.out.print("" + employee.getLastName() + " || ");
             System.out.println("Salary records count : " + employee.getSalaries().size() + " || ");
             for(Salary salary : employee.getSalaries()){
-                System.out.print("\t Salary :" + salary.getSalary());
-                System.out.println(" || hash code: " + employee.hashCode());
+                System.out.println("\t Salary :" + salary.getSalary());
+//                System.out.println(" || hash code: " + employee.hashCode()); // DEBUG line
             }
 
 
