@@ -83,8 +83,14 @@ public class DBService {
                 properties.getProperty("db.password"));
     }
 
-    public static Connection getConnectionSQLiteEmbedded() throws SQLException {
+    public static Connection getConnectionH2Embedded() throws SQLException {
         return DriverManager.getConnection(
-                properties.getProperty("db.url.sqliteMemory"));
+                properties.getProperty("db.url.H2Embedded"),
+                properties.getProperty("db.user.H2Embedded"),
+                properties.getProperty("db.password.H2Embedded"));
+    }
+
+    public static Connection getConnectionSQLiteEmbedded() throws SQLException {
+        return DriverManager.getConnection("jdbc:sqlite::memory:");
     }
 }

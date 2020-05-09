@@ -7,10 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,14 +20,9 @@ public class EmployeeServiceTest {
 //         sukurti 14 employee irasus
 //         is kuriu 11'as turi tureti 2 salary irasus, o 12'as turi tureti 3
 
-// =====================================================================
-        // ********* Connection to SQLite in memory ***********
-
-//        Connection connection = DriverManager.getConnection("jdbc:sqlite::memory:");
-//        if (connection != null) {System.out.println("CONNECTED TO SQLite successfully");}
-// =====================================================================
-
-        Connection connection = DBService.getConnection();
+//        Connection connection = DBService.getConnectionSQLiteEmbedded();
+//        Connection connection = DBService.getConnectionH2Embedded();
+        Connection connection = DBService.getConnectionFromCP();
         if (connection != null) {System.out.println("CONNECTED successfully");}
 
         Statement stmt = connection.createStatement();
@@ -93,27 +85,29 @@ public class EmployeeServiceTest {
                         " (13, '2019-06-01', '9999-01-01', 2600)," +
                         " (14, '2019-03-14', '9999-01-01', 7777)"
         );
-        stmt.close();
-//        connection.commit(); // produces ERROR if used with auto commit option enabled
+//        ResultSet resultSet1 = stmt.executeQuery("SELECT COUNT(*) FROM employees"); //DEBUG line
+//        System.out.println("Total count of rows in Employees: " + resultSet1.getInt(1));  //DEBUG line
+//        ResultSet resultSet2 = stmt.executeQuery("SELECT COUNT(*) FROM salaries");  //DEBUG line
+//        System.out.println("Total count of rows in Salaries: " + resultSet2.getInt(1));  //DEBUG line
     }
 
 
-//    @Test
-//    void loadEmployees() {
-//        // Page #:         0         1            2
-//        // Employees:  1-2-3-4-5 6-7-8-9-10 11-12-13-14
-//        // Salaries:   - - - - - - - - - -  2  3  -  -
-//        List<Employee> employees = EmployeeService.loadEmployees(2, 5);
-//        assertNotNull(employees);
-//        assertEquals(4, employees.size());
-//        assertNotNull(employees.get(0).getSalaries());
-//        assertEquals(2, employees.get(0).getSalaries().size());
-//        assertEquals(3, employees.get(1).getSalaries().size());
-//    }
+    @Test
+    void loadEmployees() {
+        // Page #:         0         1            2
+        // Employees:  1-2-3-4-5 6-7-8-9-10 11-12-13-14
+        // Salaries:   - - - - - - - - - -  2  3  -  -
+        List<Employee> employees = EmployeeService.loadEmployees(2, 5);
+        assertNotNull(employees);
+        assertEquals(4, employees.size());
+        assertNotNull(employees.get(0).getSalaries());
+        assertEquals(2, employees.get(0).getSalaries().size());
+        assertEquals(3, employees.get(1).getSalaries().size());
+    }
 
     @Test
     void ok() {
-        // visada OK :)
+//         Always pass
     }
 
 //    @AfterEach

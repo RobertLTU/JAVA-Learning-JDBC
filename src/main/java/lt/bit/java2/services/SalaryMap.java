@@ -17,9 +17,8 @@ public class SalaryMap {
             salary.setSalary(resultSet.getInt("salary"));
             return salary;
 
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
             return null;
         }
     }
