@@ -15,7 +15,7 @@ public class EmployeeService {
         String sqlStatement = "SELECT * FROM (SELECT * FROM employees LIMIT ?, ?) employees LEFT JOIN salaries USING (emp_no)";
 
         try (
-                // Connection connection = DBService.getConnectionSQLiteEmbedded();  //Embedded SQLite DB connection
+                // Connection connection = DBService.getConnectionSQLiteEmbedded();
 //                 Connection connection = DBService.getConnectionH2Embedded();
                 Connection connection = DBService.getConnectionFromCP();
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)
