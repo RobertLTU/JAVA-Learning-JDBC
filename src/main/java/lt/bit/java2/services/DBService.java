@@ -56,21 +56,31 @@ public class DBService {
             throw new RuntimeException(e);
         }
     }
-
+    //Deklaruojam static kintamaji objektui kuris implementuoja DataSource interface
     private static DataSource dataSource;
+
+    //Paleidziam static initialization block kuris sukuria ir priskiria DataSource objekta.
     static {
+        //Sukuriamas objektas kuriame yra hikari konfiguraciniai laukai
         HikariConfig config = new HikariConfig();
+
+        //Uzduodam reiksmes butiniems Hikari konfiguracijos laukams
         config.setJdbcUrl(properties.getProperty("db.url"));
         config.setUsername(properties.getProperty("db.user"));
         config.setPassword(properties.getProperty("db.password"));
+
+        //DBService klaseje sukuriam kintamaji kuriame saugomas db.draiver pavadinimas
         String driver = properties.getProperty("db.driver");
+
+        // Jeigu is properties pavyksta gauti db.driver reiksme (t.y. ji nelygi null)
+        // Tada perduodam driver reiksme i Hikari Config objekta.
         if (driver != null) {
             config.setDriverClassName(driver);
         }
-
+        //Priskiriam datasource kintamajam naujai sukurta objekta HikariDataSource
+        //Kuris sukuriamas pagal Hikari konfiguracini objekta, kuri priima kaip parametra
         dataSource = new HikariDataSource(config);
     }
-
 
     public static Connection getConnectionFromCP() throws SQLException {
         return dataSource.getConnection();
@@ -81,16 +91,5 @@ public class DBService {
                 properties.getProperty("db.url"),
                 properties.getProperty("db.user"),
                 properties.getProperty("db.password"));
-    }
-
-    public static Connection getConnectionH2Embedded() throws SQLException {
-        return DriverManager.getConnection(
-                properties.getProperty("db.url.H2Embedded"),
-                properties.getProperty("db.user.H2Embedded"),
-                properties.getProperty("db.password.H2Embedded"));
-    }
-
-    public static Connection getConnectionSQLiteEmbedded() throws SQLException {
-        return DriverManager.getConnection("jdbc:sqlite::memory:");
     }
 }

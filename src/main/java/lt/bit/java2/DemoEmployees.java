@@ -21,7 +21,9 @@ public class DemoEmployees {
         3. Ir kaip vykdymo rezultata gauname 'ResultSet'
      */
     public static void main(String[] args) {
+
         List<Employee> employeeList = EmployeeService.loadEmployees(0, 100);
+
 
         }
 //        List<Employee> testList = EmployeeService.loadEmployees(2,100);

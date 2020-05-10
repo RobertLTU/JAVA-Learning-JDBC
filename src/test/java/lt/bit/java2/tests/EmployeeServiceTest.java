@@ -20,10 +20,13 @@ public class EmployeeServiceTest {
 //         sukurti 14 employee irasus
 //         is kuriu 11'as turi tureti 2 salary irasus, o 12'as turi tureti 3
 
-//        Connection connection = DBService.getConnectionSQLiteEmbedded();
-//        Connection connection = DBService.getConnectionH2Embedded();
         Connection connection = DBService.getConnectionFromCP();
-        if (connection != null) {System.out.println("CONNECTED successfully");}
+        if (connection != null) {
+            System.out.println("\n===================================================\n" +
+                    "CONNECTED successfully\n" +
+                    "Connection METAdata = " + connection.getMetaData()+
+                    "\n===================================================");
+        }
 
         Statement stmt = connection.createStatement();
         stmt.execute("drop table if exists employees");

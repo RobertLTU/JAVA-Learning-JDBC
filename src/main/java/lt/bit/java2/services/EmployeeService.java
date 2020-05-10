@@ -15,11 +15,15 @@ public class EmployeeService {
         String sqlStatement = "SELECT * FROM (SELECT * FROM employees LIMIT ?, ?) employees LEFT JOIN salaries USING (emp_no)";
 
         try (
-                // Connection connection = DBService.getConnectionSQLiteEmbedded();
-//                 Connection connection = DBService.getConnectionH2Embedded();
                 Connection connection = DBService.getConnectionFromCP();
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)
         ) {
+
+//            System.out.println("\n===================================================\n" +
+//                    "CONNECTED successfully\n" +
+//                    "Connection METAdata = " + connection.getMetaData()+
+//                    "\n===================================================");
+
             ResultSet resultSet;
             Employee currentEmployee = null;
             Salary currSalary;
