@@ -19,10 +19,10 @@ public class EmployeeService {
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement)
         ) {
 
-//            System.out.println("\n===================================================\n" +
-//                    "CONNECTED successfully\n" +
-//                    "Connection METAdata = " + connection.getMetaData()+
-//                    "\n===================================================");
+            System.out.println("\n===================================================\n" +
+                    "MESSAGE FROM LOADEMPLOYEES METHOD\n" +
+                    "Connection METAdata = " + connection.getMetaData()+
+                    "\n===================================================");
 
             ResultSet resultSet;
             Employee currentEmployee = null;
