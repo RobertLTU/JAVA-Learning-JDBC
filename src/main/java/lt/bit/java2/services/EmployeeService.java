@@ -77,12 +77,27 @@ public class EmployeeService {
     }
 
 
-    // SELECT * FROM employees  LIMIT 5 OFFSET 10
-    // SELECT * FROM employees  LIMIT 10,5
+    public static Employee loadEmployee(int empNo) {
+        // TODO uzkrauti employee pagal jo id, t.y. emp_no
+        return null;
+    }
 
-    // SELECT * FROM employees  LIMIT ? OFFSET ?
-    // 1? <= 10
-    // 2? <= 5
+    public static void saveEmployee(Employee employee) {
+        // TODO issaugoti employee pakeitimus DB
+    }
+
+    public static Employee createEmployee(Employee employee) {
+        // TODO naujo employee irasymas i DB
+        return null;
+    }
+
+    public static void deleteEmployee(Employee employee) {
+        // TODO triname employee su empNo is DB
+    }
+
+    public static void updateEmployee(Employee employee) {
+        // TODO pakoreguojame darbuotojo informacija
+    }
 
 
 }
