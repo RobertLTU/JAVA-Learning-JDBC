@@ -100,6 +100,7 @@ public class EmployeeServiceTest {
         // Page #:         0         1            2
         // Employees:  1-2-3-4-5 6-7-8-9-10 11-12-13-14
         // Salaries:   - - - - - - - - - -  2  3  -  -
+        System.out.println("================ JUST A TESTING PHRASE ============");
         List<Employee> employees = EmployeeService.loadEmployees(2, 5);
         assertNotNull(employees);
         assertEquals(4, employees.size());
