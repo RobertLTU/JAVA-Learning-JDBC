@@ -109,10 +109,10 @@ public class EmployeeServiceTest {
         assertEquals(3, employees.get(1).getSalaries().size());
     }
 
-//    @Test
-//    void ok() {
-////         Always pass
-//    }
+    @Test
+    void ok() {
+//         Always pass
+    }
 
 //    @AfterEach
 //    void stop() throws SQLException {

@@ -12,7 +12,7 @@ public class EmployeeService {
     public static List<Employee> loadEmployees(int pageNo, int pageSize) {
 
         List<Employee> employeeList = new ArrayList<>();
-        String sqlStatement = "SELECT * FROM (SELECT * FROM employees LIMIT ?, ?) employees LEFT JOIN salaries USING (emp_no)";
+        String sqlStatement = "SELECT * FROM (SELECT * FROM employees LIMIT ?, ?) AS employees LEFT JOIN salaries USING (emp_no)";
 
         try (
                 Connection connection = DBService.getConnectionFromCP();

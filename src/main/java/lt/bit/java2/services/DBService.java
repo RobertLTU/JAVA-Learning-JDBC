@@ -68,6 +68,7 @@ public class DBService {
         config.setJdbcUrl(properties.getProperty("db.url"));
         config.setUsername(properties.getProperty("db.user"));
         config.setPassword(properties.getProperty("db.password"));
+//        config.setMaximumPoolSize(6);  //nustato connection limita
 
         //DBService klaseje sukuriam kintamaji kuriame saugomas db.draiver pavadinimas
         String driver = properties.getProperty("db.driver");
