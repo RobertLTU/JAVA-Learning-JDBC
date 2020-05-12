@@ -147,9 +147,20 @@ public class EmployeeService {
         try(Connection connection = DBService.getConnectionFromCP();
         PreparedStatement statement = connection.prepareStatement(sqlQuery)){
             statement.execute();
-            ResultSet resultSet = connection.prepareStatement("SELECT LAST_INSERT_ID()").executeQuery();
+//            ===========================================================================
+//                                MySQL variantas (neveikia su H2)
+//            ===========================================================================
+//            ResultSet resultSet = connection.prepareStatement("SELECT LAST_INSERT_ID()").executeQuery();
+//            resultSet.next();
+//            newEmpNo = resultSet.getInt(1);
+//            ===========================================================================
+//                                H2 variantas (neveikia su MySQL)
+//            ===========================================================================
+            ResultSet resultSet = connection.prepareStatement("CALL SCOPE_IDENTITY()").executeQuery();
             resultSet.next();
             newEmpNo = resultSet.getInt(1);
+//          ===========================================================================
+
         }catch(SQLException e){
             e.printStackTrace();
         }
