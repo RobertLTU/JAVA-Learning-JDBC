@@ -6,12 +6,15 @@ import lt.bit.java2.model.Salary;
 import lt.bit.java2.services.DBService;
 import lt.bit.java2.services.EmployeeMap;
 import lt.bit.java2.services.EmployeeService;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class DemoEmployees {
+//    private static Logger log = Logger.getLogger("DemoEmployees.class");
     /*
         SELECT * FROM employees LIMIT 10
 
@@ -21,8 +24,22 @@ public class DemoEmployees {
         3. Ir kaip vykdymo rezultata gauname 'ResultSet'
      */
     public static void main(String[] args) {
+//            log.info("LoggerTesting");
+
 
 //        List<Employee> employeeList = EmployeeService.loadEmployees(0, 100);
+
+
+//        Employee employeeTest = EmployeeService.loadEmployee(499999);
+//        employeeTest.setFirstName("Micheal");
+//        employeeTest.setLastName("Jordan");
+//        EmployeeService.printEmployee(employeeTest);
+//        EmployeeService.updateEmployee(employeeTest);
+//        EmployeeService.loadEmployee(499999);
+
+
+
+
 
 
         }

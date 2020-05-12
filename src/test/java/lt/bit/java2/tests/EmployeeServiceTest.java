@@ -4,7 +4,6 @@ import lt.bit.java2.model.Employee;
 import lt.bit.java2.services.DBService;
 import lt.bit.java2.services.EmployeeService;
 import org.junit.jupiter.api.Test;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 public class EmployeeServiceTest extends DBTestBase {
 
     @Test
-    void testInitData() throws SQLException {
+    void initialDataTest() throws SQLException {
         Connection connection = DBService.getConnectionFromCP();
         Statement stmt = connection.createStatement();
         ResultSet resultSet = stmt.executeQuery("SELECT COUNT(*) FROM employees");
@@ -38,38 +37,39 @@ public class EmployeeServiceTest extends DBTestBase {
     }
 
     @Test
-    void testUpdate() {
+    void updateEmployeeTest() {
         Employee employee = EmployeeService.loadEmployee(3);
         assertEquals("A3", employee.getFirstName());
         assertEquals(LocalDate.of(2000, 1, 3), employee.getBirthDate());
 
         employee.setFirstName("A31");
         employee.setBirthDate(LocalDate.of(2000, 2, 15));
-        EmployeeService.saveEmployee(employee);
+        EmployeeService.updateEmployee(employee);
 
         employee = EmployeeService.loadEmployee(3);
-        assertEquals("A31", employee.getFirstName());
-        assertEquals(LocalDate.of(2000, 2, 15), employee.getBirthDate());
+//        assertEquals("A31", employee.getFirstName());
+//        assertEquals(LocalDate.of(2000, 2, 15), employee.getBirthDate());
     }
 
     @Test
-    void testCreate() {
+    void insertNewEmployeeTest() {
         Employee employee = new Employee();
         employee.setFirstName("X1");
         employee.setLastName("X2");
         employee.setBirthDate(LocalDate.of(2000, 12, 31));
         employee.setGender("M");
         employee.setHireDate(LocalDate.of(2020, 3, 31));
-        employee = EmployeeService.createEmployee(employee);
+        employee = EmployeeService.insertNewEmployee(employee);
         assertNotNull(employee.getEmpNo());
 
         int empNo = employee.getEmpNo();
         employee = EmployeeService.loadEmployee(empNo);
+        EmployeeService.printEmployee(employee);
         assertEquals("X1", employee.getFirstName());
     }
 
     @Test
-    void testDelete() {
+    void deleteEmployeeTest() {
         Employee employee = EmployeeService.loadEmployee(3);
         EmployeeService.deleteEmployee(employee);
 
@@ -77,18 +77,7 @@ public class EmployeeServiceTest extends DBTestBase {
         assertNull(employee);
     }
 
-    @Test
-    void testOk() {
-        //Empty test that must always pass
-    }
 
-//    @AfterEach
-//    void stop() throws SQLException {
-//        Connection connection = DBService.getConnectionFromCP();
-//        Statement stmt = connection.createStatement();
-//        stmt.execute("drop table if exists employees");
-//        stmt.execute("drop table if exists salaries");
-//        connection.commit();
-//    }
+
 
 }

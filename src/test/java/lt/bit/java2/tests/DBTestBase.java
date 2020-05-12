@@ -1,9 +1,11 @@
 package lt.bit.java2.tests;
 
 import lt.bit.java2.services.DBService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -11,22 +13,15 @@ public class DBTestBase {
 
     @BeforeEach
     void start() throws SQLException {
-//         sukurti 14 employee irasus
-//         is kuriu 11'as turi tureti 2 salary irasus, o 12'as turi tureti 3
+//         Valdo uzduoti -> sukurti 14 employee irasus is kuriu 11'as
+//         turi tureti 2 salary irasus, o 12'as turi tureti 3
 
         Connection connection = DBService.getConnectionFromCP();
-        if (connection != null) {
-            System.out.println("\n===================================================\n" +
-                    "CONNECTED successfully\n" +
-                    "Connection METAdata = " + connection.getMetaData()+
-                    "\n===================================================");
-        }
-
         Statement stmt = connection.createStatement();
         stmt.execute("drop table if exists employees");
         stmt.execute(
                 "CREATE TABLE employees (" +
-                        " emp_no int," +
+                        " emp_no int NOT NULL PRIMARY KEY AUTO_INCREMENT," +
                         " first_name varchar(14)," +
                         " last_name varchar(16)," +
                         " gender char(1)," +
@@ -89,5 +84,14 @@ public class DBTestBase {
 //        ResultSet resultSet2 = stmt.executeQuery("SELECT COUNT(*) FROM salaries");
 //        System.out.println("Total count of rows in Salaries: " + resultSet2.getInt(1));
     }
+
+//    @AfterEach
+//    void stop() throws SQLException {
+//        Connection connection = DBService.getConnectionFromCP();
+//        Statement stmt = connection.createStatement();
+//        stmt.execute("drop table if exists employees");
+//        stmt.execute("drop table if exists salaries");
+//        connection.commit();
+//    }
 
 }

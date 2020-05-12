@@ -13,10 +13,7 @@ public class Employee {
     private LocalDate birthDate;
     private LocalDate hireDate;
 
-    // employee --< salary
     private List<Salary> salaries = new ArrayList<>();
-
-
 
     public Integer getEmpNo() {
         return empNo;
